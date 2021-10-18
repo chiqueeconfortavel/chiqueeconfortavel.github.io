@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <title>VITRINNI</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
+    <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#766df4">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Page loading styles-->
+    <style>
+      .page-loading {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .4s .2s ease-in-out;
+        transition: all .4s .2s ease-in-out;
+        background-color: #fff;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
+      }
+      .page-loading.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .page-loading-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity .2s ease-in-out;
+        transition: opacity .2s ease-in-out;
+        opacity: 0;
+      }
+      .page-loading.active > .page-loading-inner {
+        opacity: 1;
+      }
+      .page-loading-inner > span {
+        display: block;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #666276;;
+      }
+      .page-spinner {
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: .75rem;
+        vertical-align: text-bottom;
+        border: .15em solid #bbb7c5;
+        border-right-color: transparent;
+        border-radius: 50%;
+        -webkit-animation: spinner .75s linear infinite;
+        animation: spinner .75s linear infinite;
+      }
+      @-webkit-keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+      (function () {
+        window.onload = function () {
+          var preloader = document.querySelector('.page-loading');
+          preloader.classList.remove('active');
+          setTimeout(function () {
+            preloader.remove();
+          }, 2000);
+        };
+      })();
+      
+    </script>
+    <!-- Vendor Styles-->
+    <link rel="stylesheet" media="screen" href="vendor/simplebar/dist/simplebar.min.css"/>
+    <link rel="stylesheet" media="screen" href="vendor/leaflet/dist/leaflet.css"/>
+    <link rel="stylesheet" media="screen" href="vendor/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css"/>
+    <link rel="stylesheet" media="screen" href="vendor/filepond/dist/filepond.min.css"/>
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="css/theme.min.css">
+  </head>
+  <!-- Body-->
+  <body>
+    <!-- Page loading spinner-->
+    <div class="page-loading active">
+      <div class="page-loading-inner">
+        <div class="page-spinner"></div><span>Aguade um pouco...</span>
+      </div>
+    </div>
+    <main class="page-wrapper">
+      <!-- Navbar-->
+      <main class="page-wrapper">
+        <!-- Sign In Modal-->
+        <div class="modal fade" id="signin-modal" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered p-2 my-0 mx-auto" style="max-width: 950px;">
+            <div class="modal-content">
+              <div class="modal-body px-0 py-2 py-sm-0">
+                <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal"></button>
+                <div class="row mx-0 align-items-center">
+                  <div class="col-md-6 border-end-md p-4 p-sm-5">
+                    <h2 class="h3 mb-4 mb-sm-5">Olá! <br>Bem vindo novamente.</h2><img class="d-block mx-auto" src="img/signin-modal/signin.svg" width="344" alt="Illustartion">
+                    *<div class="mt-4 mt-sm-5">Ainda não tem uma conta? <a href="#signup-modal" data-bs-toggle="modal" data-bs-dismiss="modal">Crie sua conta aqui</a></div>
+                  </div>
+                  <div class="col-md-6 px-4 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5"><a class="btn btn-outline-info w-100 mb-3" href="#"><i class="fi-google fs-lg me-1"></i>Log in com Google</a><a class="btn btn-outline-info w-100 mb-3" href="#"><i class="fi-facebook fs-lg me-1"></i>Cadastre-se com Facebook</a>
+                    <div class="d-flex align-items-center py-3 mb-3">
+                      <hr class="w-100">
+                      <div class="px-3">Or</div>
+                      <hr class="w-100">
+                    </div>
+                    <form class="needs-validation" novalidate>
+                      <div class="mb-4">
+                        <label class="form-label mb-2" for="signin-email">Email</label>
+                        <input class="form-control" type="email" id="signin-email" placeholder="Enter your email" required>
+                      </div>
+                      <div class="mb-4">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                          <label class="form-label mb-0" for="signin-password">Senha</label><a class="fs-sm" href="#">Esqueceu a senha?</a>
+                        </div>
+                        <div class="password-toggle">
+                          <input class="form-control" type="password" id="signin-password" placeholder="Enter password" required>
+                          <label class="password-toggle-btn" aria-label="Show/hide password">
+                            <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                          </label>
+                        </div>
+                      </div>
+                      <button class="btn btn-primary btn-lg w-100" type="submit">Log in         </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Sign Up Modal-->
+        <div class="modal fade" id="signup-modal" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered p-2 my-0 mx-auto" style="max-width: 950px;">
+            <div class="modal-content">
+              <div class="modal-body px-0 py-2 py-sm-0">
+                <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal"></button>
+                <div class="row mx-0 align-items-center">
+                  <div class="col-md-6 border-end-md p-4 p-sm-5">
+                    <h2 class="h3 mb-4 mb-sm-5">Join PIV.<br>Get premium benefits:</h2>
+                    <ul class="list-unstyled mb-4 mb-sm-5">
+                      <li class="d-flex mb-2"><i class="fi-check-circle text-primary mt-1 me-2"></i><span>Crie sua lista de promoções</span></li>
+                      <li class="d-flex mb-2"><i class="fi-check-circle text-primary mt-1 me-2"></i><span>Monte sua lista de desejos</span></li>
+                      <li class="d-flex mb-0"><i class="fi-check-circle text-primary mt-1 me-2"></i><span>Deixe/Veja comentários</span></li>
+                    </ul><img class="d-block mx-auto" src="img/signin-modal/signup.svg" width="344" alt="Illustartion">
+                    <div class="mt-sm-4 pt-md-3">Já tem uma conta? <a href="#signin-modal" data-bs-toggle="modal" data-bs-dismiss="modal">Log in</a></div>
+                  </div>
+                  <div class="col-md-6 px-4 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5"><a class="btn btn-outline-info w-100 mb-3" href="#"><i class="fi-google fs-lg me-1"></i>Sign in with Google</a><a class="btn btn-outline-info w-100 mb-3" href="#"><i class="fi-facebook fs-lg me-1"></i>Sign in with Facebook</a>
+                    <div class="d-flex align-items-center py-3 mb-3">
+                      <hr class="w-100">
+                      <div class="px-3">Ou</div>
+                      <hr class="w-100">
+                    </div>
+                    <form class="needs-validation" novalidate>
+                      <div class="mb-4">
+                        <label class="form-label" for="signup-name">Nome</label>
+                        <input class="form-control" type="text" id="signup-name" placeholder="Informe seu nome completo" required>
+                      </div>
+                      <div class="mb-4">
+                        <label class="form-label" for="signup-email">Email</label>
+                        <input class="form-control" type="email" id="signup-email" placeholder="Informe seu email" required>
+                      </div>
+                      <div class="mb-4">
+                        <label class="form-label" for="signup-password">Senha <span class='fs-sm text-muted'>min. 8 char</span></label>
+                        <div class="password-toggle">
+                          <input class="form-control" type="password" id="signup-password" minlength="8" required>
+                          <label class="password-toggle-btn" aria-label="Show/hide password">
+                            <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="mb-4">
+                        <label class="form-label" for="signup-password-confirm">Confirme sua senha</label>
+                        <div class="password-toggle">
+                          <input class="form-control" type="password" id="signup-password-confirm" minlength="8" required>
+                          <label class="password-toggle-btn" aria-label="Show/hide password">
+                            <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="form-check mb-4">
+                        <input class="form-check-input" type="checkbox" id="agree-to-terms" required>
+                        <label class="form-check-label" for="agree-to-terms">Criando sua conta, você concorda com os  <a href='#'>Termos de uso</a> and <a href='#'> e politica de privacidade</a></label>
+                      </div>
+                      <button class="btn btn-primary btn-lg w-100" type="submit">Cadastre-se         </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Navbar-->
+        <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-scroll-header>
+          <div class="container">
+            <a class="navbar-brand me-3 me-xl-4" href="real-estate-home.html">VITRINNI</a>
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="btn btn-sm text-primary d-none d-lg-block order-lg-3" href="#signin-modal" data-bs-toggle="modal"><i class="fi-user me-2"></i>Log in</a><a class="btn btn-primary btn-sm ms-2 order-lg-3" href="real-estate-add-property.html"><i class="fi-plus me-2"></i>Adicionar<span class='d-none d-sm-inline'> empreendimento</span></a>
+            <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
+              <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
+                <!-- Menu items-->
+                <li class="nav-item active"><a class="nav-link" href="real-estate-home.html">Home</a></li>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catálogo</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="real-estate-catalog-rent.html">Venda</a></li>
+                    <li><a class="dropdown-item" href="real-estate-catalog-sale.html">Locação</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item d-lg-none"><a class="nav-link" href="#signin-modal" data-bs-toggle="modal"><i class="fi-user me-2"></i>Log in</a></li>
+              </ul>
+            </div>
+          </div>
+        </header>
+      
+      <!-- Page content-->
+      <!-- Preview modal-->
+      <div class="modal fade" id="preview-modal" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen" role="document">
+          <div class="modal-content">
+            <div class="modal-header d-block d-sm-flex">
+              <h3 class="h5 text-muted fw-normal modal-title d-none d-sm-block">Property preview</h3>
+              <div class="d-flex align-items-center"><a class="btn btn-primary btn-sm me-4" href="real-estate-property-promotion.html">Save and continue</a><span class="fs-xs text-muted ms-auto me-2">[ESC]</span>
+                <button class="btn-close ms-0" type="button" data-bs-dismiss="modal"></button>
+              </div>
+            </div>
+            <div class="modal-body p-0">
+              <div class="container mt-2 mt-sm-0 py-4 py-sm-5">
+                <h1 class="h2 mb-2">Pine Apartments</h1>
+                <p class="mb-2 pb-1 fs-lg">28 Jackson Ave Long Island City, NY 67234</p>
+                <ul class="d-flex mb-4 list-unstyled">
+                  <li class="me-3 pe-3 border-end"><b class="me-1">4</b><i class="fi-bed mt-n1 lead align-middle text-muted"></i></li>
+                  <li class="me-3 pe-3 border-end"><b class="me-1">2</b><i class="fi-bath mt-n1 lead align-middle text-muted"></i></li>
+                  <li class="me-3 pe-3 border-end"><b class="me-1">2</b><i class="fi-car mt-n1 lead align-middle text-muted"></i></li>
+                  <li><b>56 </b>sq.m</li>
+                </ul>
+                <div class="overflow-auto pb-3 px-2 mx-n2 mb-4" data-simplebar>
+                  <div class="row g-2 g-md-3" style="min-width: 30rem;">
+                    <div class="col-8"><img class="rounded rounded-md-3" src="img/real-estate/single/01.jpg" alt="Gallery thumbnail"></div>
+                    <div class="col-4"><img class="rounded rounded-md-3 mb-2 mb-md-3" src="img/real-estate/single/02.jpg" alt="Gallery thumbnail"><img class="rounded rounded-md-3" src="img/real-estate/single/03.jpg" alt="Gallery thumbnail"></div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-7 mb-md-0 mb-4"><span class="badge bg-success me-2 mb-3">Verified</span><span class="badge bg-info me-2 mb-3">New</span>
+                    <h2 class="h3 mb-4 pb-4 border-bottom">$2,000<span class="d-inline-block ms-1 fs-base fw-normal text-body">/month</span></h2>
+                    <!-- Overview-->
+                    <div class="mb-4 pb-md-3">
+                      <h3 class="h4">Overview</h3>
+                      <p class="mb-1">Lorem tincidunt lectus vitae id vulputate diam quam. Imperdiet non scelerisque turpis sed etiam ultrices. Blandit mollis dignissim egestas consectetur porttitor. Vulputate dolor pretium, dignissim eu augue sit ut convallis. Lectus est, magna urna feugiat sed ultricies sed in lacinia. Fusce potenti sit id pharetra vel ornare. Vestibulum sed tellus ullamcorper arcu.</p>
+                      <div class="collapse" id="seeMoreOverview">
+                        <p class="mb-1">Asperiores eos molestias, aspernatur assumenda vel corporis ex, magni excepturi totam exercitationem quia inventore quod amet labore impedit quae distinctio? Officiis blanditiis consequatur alias, atque, sed est incidunt accusamus repudiandae tempora repellendus obcaecati delectus ducimus inventore tempore harum numquam autem eligendi culpa.</p>
+                      </div><a class="collapse-label collapsed" href="#seeMoreOverview" data-bs-toggle="collapse" data-bs-label-collapsed="Show more" data-bs-label-expanded="Show less" role="button" aria-expanded="false" aria-controls="seeMoreOverview"></a>
+                    </div>
+                    <!-- Property Details-->
+                    <div class="mb-4 pb-md-3">
+                      <h3 class="h4">Property Details</h3>
+                      <ul class="list-unstyled mb-0">
+                        <li><b>Type: </b>apartment</li>
+                        <li><b>Apartment area: </b>56 sq.m</li>
+                        <li><b>Built: </b>2015</li>
+                        <li><b>Bedrooms: </b>4</li>
+                        <li><b>Bathrooms: </b>2</li>
+                        <li><b>Parking places: </b>2</li>
+                        <li><b>Pets allowed: </b>No</li>
+                      </ul>
+                    </div>
+                    <!-- Amenities-->
+                    <div class="mb-sm-3">
+                      <h3 class="h4">Amenities</h3>
+                      <ul class="list-unstyled row row-cols-lg-3 row-cols-md-2 row-cols-1 gy-1 mb-1 text-nowrap">
+                        <li class="col"><i class="fi-wifi mt-n1 me-2 fs-lg align-middle"></i>WiFi</li>
+                        <li class="col"><i class="fi-thermometer mt-n1 me-2 fs-lg align-middle"></i>Heating</li>
+                        <li class="col"><i class="fi-dish mt-n1 me-2 fs-lg align-middle"></i>Dishwasher</li>
+                        <li class="col"><i class="fi-parking mt-n1 me-2 fs-lg align-middle"></i>Parking place</li>
+                        <li class="col"><i class="fi-snowflake mt-n1 me-2 fs-lg align-middle"></i>Air conditioning</li>
+                        <li class="col"><i class="fi-iron mt-n1 me-2 fs-lg align-middle"></i>Iron</li>
+                        <li class="col"><i class="fi-tv mt-n1 me-2 fs-lg align-middle"></i>TV</li>
+                        <li class="col"><i class="fi-laundry mt-n1 me-2 fs-lg align-middle"></i>Laundry</li>
+                        <li class="col"><i class="fi-cctv mt-n1 me-2 fs-lg align-middle"></i>Security cameras</li>
+                      </ul>
+                      <div class="collapse" id="seeMoreAmenities">
+                        <ul class="list-unstyled row row-cols-lg-3 row-cols-md-2 row-cols-1 gy-1 mb-1 text-nowrap">
+                          <li class="col"><i class="fi-no-smoke mt-n1 me-2 fs-lg align-middle"></i>No smocking</li>
+                          <li class="col"><i class="fi-pet mt-n1 me-2 fs-lg align-middle"></i>Cats</li>
+                          <li class="col"><i class="fi-swimming-pool mt-n1 me-2 fs-lg align-middle"></i>Swimming pool</li>
+                          <li class="col"><i class="fi-double-bed mt-n1 me-2 fs-lg align-middle"></i>Double bed</li>
+                          <li class="col"><i class="fi-bed mt-n1 me-2 fs-lg align-middle"></i>Single bed</li>
+                        </ul>
+                      </div><a class="collapse-label collapsed" href="#seeMoreAmenities" data-bs-toggle="collapse" data-bs-label-collapsed="Show more" data-bs-label-expanded="Show less" role="button" aria-expanded="false" aria-controls="seeMoreAmenities"></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Page container-->
+      <div class="container mt-5 mb-md-4 py-5">
+        <div class="row">
+          <!-- Page content-->
+          <div class="col-lg-8">
+            <!-- Breadcrumb-->
+            <nav class="mb-3 pt-md-3" aria-label="Breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="real-estate-home.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Adicione um empreendimento</li>
+              </ol>
+            </nav>
+            <!-- Title-->
+            <div class="mb-4">
+              <h1 class="h2 mb-0">Adicione um empreendimento</h1>
+              <div class="d-lg-none pt-3 mb-2">65% content filled</div>
+              <div class="progress d-lg-none mb-4" style="height: .25rem;">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            <!-- Informações Básicas-->
+            <section class="card card-body border-0 shadow-sm p-4 mb-4" id="basic-info">
+              <h2 class="h4 mb-4"><i class="fi-info-circle text-primary fs-5 mt-n1 me-2"></i>Informações básicas</h2>
+              <div class="mb-3">
+                <label class="form-label" for="ap-title">Titulo <span class="text-danger">*</span></label>
+                <input class="form-control" type="text" id="ap-title" placeholder="Title for your property" value="Pine Apartments" required><span class="form-text">48 characters left</span>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 mb-3">
+                  <label class="form-label" for="ap-category">Categoria <span class="text-danger">*</span></label>
+                  <select class="form-select" id="ap-category" required>
+                    <option value="" disabled hidden>Selecione o que deseja</option>
+                    <option value="Rent">Venda</option>
+                    <option value="Sell">Locação</option>
+                  </select>
+                </div>
+                <div class="col-sm-6 mb-3">
+                  <label class="form-label" for="ap-type">Tipo de propriedade<span class="text-danger">*</span></label>
+                  <select class="form-select" id="ap-type" required>
+                    <option value="" disabled hidden>Selecione o tipo de propriedade
+                      
+                    </option>
+                    <option value="Apartment">Apartamentos</option>
+                    <option value="House">Casas</option>
+                    <option value="Commercial">Comerciais</option>
+                    <option value="Commercial">Hotéis</option>
+                    <option value="New building">Novos empreendimentos</option>
+                  </select>
+                </div>
+              </div>
+            </section>
+            <!-- Location-->
+            <section class="card card-body border-0 shadow-sm p-4 mb-4" id="location">
+              <h2 class="h4 mb-4"><i class="fi-map-pin text-primary fs-5 mt-n1 me-2"></i>Localização</h2>
+              <div class="row">
+                <div class="col-sm-6 mb-3">
+                  <label class="form-label" for="ap-country">País<span class="text-danger">*</span></label>
+                  <select class="form-select" id="ap-country" required>
+                    <option value="" disabled>Choose country</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Belgium">Belgium</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Canada">Brasil</option>
+                    <option value="Germany">Germany</option>
+                    <option value="United States" selected>United States</option>
+                  </select>
+                </div>
+                <div class="col-sm-5 mb-3">
+                  <label class="form-label" for="ap-zip">CEP <span class="text-danger">*</span></label>
+                  <input class="form-control" type="text" id="ap-zip" placeholder="Entre com o cep" value="72210106" required>
+                  <a class="btn btn-primary btn-sm ms-2 order-lg-3" href="#"><i class="fi-search me-2"></i></span></a>
+                </div>
+                <div class="col-sm-6 mb-3">
+                  <label class="form-label" for="ap-city">City <span class="text-danger">*</span></label>
+                  <select class="form-select" id="ap-city" required>
+                    <option value="" disabled>Choose city</option>
+                    <option value="Chicago">Chicago</option>
+                    <option value="Dallas">Dallas</option>
+                    <option value="Los Angeles">Los Angeles</option>
+                    <option value="New York" selected>New York</option>
+                    <option value="San Diego">San Diego</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-8 mb-3">
+                  <label class="form-label" for="ap-district">District <span class="text-danger">*</span></label>
+                  <select class="form-select" id="ap-district" required>
+                    <option value="" disabled>Choose district</option>
+                    <option value="Brooklyn">Brooklyn</option>
+                    <option value="Manhattan">Manhattan</option>
+                    <option value="Staten Island">Staten Island</option>
+                    <option value="The Bronx">The Bronx</option>
+                    <option value="Queens" selected>Queens</option>
+                  </select>
+                </div>
+                
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="ap-address">Endereço <span class="text-danger">*</span></label>
+                <input class="form-control" type="text" id="ap-address" value="28 Jackson Avenue" required>
+              </div>
+              
+              <div class="mb-3">
+                <label class="form-label" for="ap-address">Número <span class="text-danger">*</span></label>
+                <input class="form-control" type="text" id="ap-address" value="28 Jackson Avenue" required>
+              </div>
+               
+              <div class="mb-3">
+                <label class="form-label" for="ap-address">Complemento </label>
+                <input class="form-control" type="text" id="ap-address" value="28 Jackson Avenue">
+              </div>
+              
+              <div class="form-label fw-bold pt-3 pb-2">Veja no mapa</div>
+              <div class="interactive-map rounded-3" data-map-options="{&quot;mapLayer&quot;: &quot;https://api.maptiler.com/maps/pastel/{z}/{x}/{y}.png?key=5vRQzd34MMsINEyeKPIs&quot;, &quot;coordinates&quot;: [40.7447, -73.9485], &quot;zoom&quot;: 13, &quot;scrollWheelZoom&quot;: false, &quot;markers&quot;: [{&quot;coordinates&quot;: [40.7447, -73.9485], &quot;className&quot;: &quot;custom-marker-dot&quot;, &quot;popup&quot;: &quot;&lt;div class='p-3'&gt;&lt;h6 class='fs-base'&gt;Pine Apartments&lt;/h6&gt;&lt;p class='fs-xs text-muted pt-1 mt-n3 mb-0'&gt;28 Jackson Ave Long Island City, NY&lt;/p&gt;&lt;/div&gt;&quot;}]}" style="height: 250px;"></div>
+            </section>
+            <!-- Property details-->
+            <section class="card card-body border-0 shadow-sm p-4 mb-4" id="details">
+              <h2 class="h4 mb-4"><i class="fi-edit text-primary fs-5 mt-n1 me-2"></i>Detalhes do empreendimento</h2>
+              <div class="mb-4" style="max-width: 25rem;">
+                <label class="form-label" for="ap-area">Area total m²</label>
+                <input class="form-control" type="number" id="ap-area" min="20" placeholder="Entre a area" value="56" required>
+              </div>
+              <div class="mb-4">
+                <label class="form-label d-block fw-bold mb-2 pb-1">Quartos</label>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Selecione a quantidade de quartos">
+                  <input class="btn-check" type="radio" id="studio" name="bedrooms">
+                  <input class="btn-check" type="radio" id="bedrooms-1" name="bedrooms">
+                  <label class="btn btn-outline-secondary fw-normal" for="bedrooms-1">1</label>
+                  <input class="btn-check" type="radio" id="bedrooms-2" name="bedrooms">
+                  <label class="btn btn-outline-secondary fw-normal" for="bedrooms-2">2</label>
+                  <input class="btn-check" type="radio" id="bedrooms-3" name="bedrooms">
+                  <label class="btn btn-outline-secondary fw-normal" for="bedrooms-3">3</label>
+                  <input class="btn-check" type="radio" id="bedrooms-4" name="bedrooms" checked>
+                  <label class="btn btn-outline-secondary fw-normal" for="bedrooms-4">4+</label>
+                </div>
+              </div>
+              <div class="mb-4">
+                <label class="form-label d-block fw-bold mb-2 pb-1">Banheiros</label>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Choose number of bathrooms">
+                  <input class="btn-check" type="radio" id="bathrooms-1" name="bathrooms">
+                  <label class="btn btn-outline-secondary fw-normal" for="bathrooms-1">1</label>
+                  <input class="btn-check" type="radio" id="bathrooms-2" name="bathrooms" checked>
+                  <label class="btn btn-outline-secondary fw-normal" for="bathrooms-2">2</label>
+                  <input class="btn-check" type="radio" id="bathrooms-3" name="bathrooms">
+                  <label class="btn btn-outline-secondary fw-normal" for="bathrooms-3">3</label>
+                  <input class="btn-check" type="radio" id="bathrooms-4" name="bathrooms">
+                  <label class="btn btn-outline-secondary fw-normal" for="bathrooms-4">4+</label>
+                </div>
+              </div>
+              <div class="mb-4">
+                <label class="form-label d-block fw-bold mb-2 pb-1">Vagas de garagem</label>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Escolha a quantidade de quartos">
+                  <input class="btn-check" type="radio" id="parking-1" name="parking">
+                  <label class="btn btn-outline-secondary fw-normal" for="parking-1">1</label>
+                  <input class="btn-check" type="radio" id="parking-2" name="parking" checked>
+                  <label class="btn btn-outline-secondary fw-normal" for="parking-2">2</label>
+                  <input class="btn-check" type="radio" id="parking-3" name="parking">
+                  <label class="btn btn-outline-secondary fw-normal" for="parking-3">3</label>
+                  <input class="btn-check" type="radio" id="parking-4" name="parking">
+                  <label class="btn btn-outline-secondary fw-normal" for="parking-4">4+</label>
+                </div>
+              </div>
+              <div class="mb-4">
+                <label class="form-label d-block fw-bold mb-2 pb-1">Facilidades</label>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="wifi" checked>
+                      <label class="form-check-label" for="wifi">WiFi</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="air-condition" checked>
+                      <label class="form-check-label" for="air-condition">Ar condicionado</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="balcony">
+                      <label class="form-check-label" for="balcony">Sacada</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="garage">
+                      <label class="form-check-label" for="garage">Garagem</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="gym">
+                      <label class="form-check-label" for="gym">Academia</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="free-parking" checked>
+                      <label class="form-check-label" for="free-parking">Estacionamento Grátis</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="pets-friendly">
+                      <label class="form-check-label" for="pets-friendly">Animais de estimação</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="pool">
+                      <label class="form-check-label" for="pool">Piscina</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="bar">
+                      <label class="form-check-label" for="bar">Bar</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="tv" checked>
+                      <label class="form-check-label" for="tv">TV</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="linens" checked>
+                      <label class="form-check-label" for="linens">Roupa de cama</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="heating" checked>
+                      <label class="form-check-label" for="heating">Aquecimento</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="dishwasher">
+                      <label class="form-check-label" for="dishwasher">Lava louças</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="iron" checked>
+                      <label class="form-check-label" for="iron">Ferro de passar</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="hair-dryer" checked>
+                      <label class="form-check-label" for="hair-dryer">Secador de cabelo</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="kitchen" checked>
+                      <label class="form-check-label" for="kitchen">Cozinha</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="breakfast">
+                      <label class="form-check-label" for="breakfast">Café da manhã</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="security-cameras">
+                      <label class="form-check-label" for="security-cameras">Cameras</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <label class="form-label" for="ap-description">Descrição </label>
+              <textarea class="form-control" id="ap-description" rows="5" placeholder="Descreva seu empreendimento"></textarea>
+            </section>
+            <!-- Price-->
+            <section class="card card-body border-0 shadow-sm p-4 mb-4" id="price">
+              <h2 class="h4 mb-4"><i class="fi-cash text-primary fs-5 mt-n1 me-2"></i>Preço</h2>
+              <label class="form-label" for="ap-price">Preço <span class="text-danger">*</span></label>
+              <div class="d-sm-flex">
+                <input class="form-control w-100 me-2 mb-2" type="number" id="ap-price" min="200" step="50" required>
+              </div>
+            </section>
+            <!-- Photos / video-->
+            <section class="card card-body border-0 shadow-sm p-4 mb-4" id="photos">
+              <h2 class="h4 mb-4"><i class="fi-image text-primary fs-5 mt-n1 me-2"></i>Fotos / video</h2>
+              <div class="alert alert-info mb-4" role="alert">
+                <div class="d-flex"><i class="fi-alert-circle me-2 me-sm-3"></i>
+                  <p class="fs-sm mb-1">O tamanho máximo da foto tem que ser 8 MB. Formatos: jpeg, jpg, png. Coloque a foto principal em primeiro.<br>O tamanho máximo de video é de 10 MB. Formatos: mp4, mov.</p>
+                </div>
+              </div>
+              <input class="file-uploader file-uploader-grid" type="file" multiple data-max-file-size="10MB" accept="image/png, image/jpeg, video/mp4, video/mov" data-label-idle="&lt;div class=&quot;btn btn-primary mb-3&quot;&gt;&lt;i class=&quot;fi-cloud-upload me-1&quot;&gt;&lt;/i&gt;Carregar fotos / video&lt;/div&gt;&lt;br&gt;Ou arraste e solte os aqui">
+            </section>
+            <!-- Contacts-->
+            <section class="card card-body border-0 shadow-sm p-4 mb-4" id="contacts">
+              <h2 class="h4 mb-4"><i class="fi-phone text-primary fs-5 mt-n1 me-2"></i>Contatos</h2>
+              <div class="row">
+                <div class="col-sm-6 mb-3">
+                  <label class="form-label" for="ap-fn">Primeiro nome <span class="text-danger">*</span></label>
+                  <input class="form-control" type="text" id="ap-fn" value="Annette" placeholder="Infome seu primeiro nome" required>
+                </div>
+                <div class="col-sm-6 mb-3">
+                  <label class="form-label" for="ap-sn">Segundo nome <span class="text-danger">*</span></label>
+                  <input class="form-control" type="text" id="ap-sn" value="Black" placeholder="Entre seu segundo nome" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 mb-3">
+                  <label class="form-label" for="ap-email">Email<span class="text-danger">*</span></label>
+                  <input class="form-control" type="text" id="ap-email" value="annette_black@email.com" placeholder="Entre com seu email">
+                </div>
+                <div class="col-sm-6 mb-3">
+                  <label class="form-label" for="ap-phone">Número de telefone <span class="text-danger">*</span></label>
+                  <input class="form-control" type="tel" id="ap-phone" data-format="custom" data-delimiter="-" data-blocks="3 3 4" value="302-555-0107" placeholder="000-000-0000">
+                </div>
+              </div>
+              <label class="form-label" for="ap-company-name">Compania</label>
+              <input class="form-control" type="text" id="ap-company-name" placeholder="Entre o nome de sua compania">
+            </section>
+            <!-- Action buttons -->
+            <section class="d-sm-flex justify-content-between pt-2"><a class="btn btn-outline-primary btn-lg d-block ps-3 mb-3 mb-sm-2" href="#preview-modal" data-bs-toggle="modal"><i class="fi-eye-on me-2"></i>Preview</a><a class="btn btn-primary btn-lg d-block mb-2" href="real-estate-property-promotion.html">Salve e continue</a></section>
+          </div>
+          <!-- Progress of completion-->
+          <aside class="col-lg-3 offset-lg-1 d-none d-lg-block">
+            <div class="sticky-top pt-5">
+              <h6 class="pt-5 mt-3 mb-2">65% content filled</h6>
+              <div class="progress mb-4" style="height: .25rem;">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <ul class="list-unstyled">
+                <li class="d-flex align-items-center"><i class="fi-check text-primary me-2"></i><a class="nav-link fw-normal ps-1 p-0" href="#basic-info" data-scroll data-scroll-offset="20">Informações Básicas</a></li>
+                <li class="d-flex align-items-center"><i class="fi-check text-primary me-2"></i><a class="nav-link fw-normal ps-1 p-0" href="#location" data-scroll data-scroll-offset="20">Localização</a></li>
+                <li class="d-flex align-items-center"><i class="fi-check text-primary me-2"></i><a class="nav-link fw-normal ps-1 p-0" href="#details" data-scroll data-scroll-offset="20">Detalhes</a></li>
+                <li class="d-flex align-items-center"><i class="fi-check text-muted me-2"></i><a class="nav-link fw-normal ps-1 p-0" href="#price" data-scroll data-scroll-offset="20">Preço</a></li>
+                <li class="d-flex align-items-center"><i class="fi-check text-muted me-2"></i><a class="nav-link fw-normal ps-1 p-0" href="#photos" data-scroll data-scroll-offset="20">Fotos e Videos</a></li>
+                <li class="d-flex align-items-center"><i class="fi-check text-primary me-2"></i><a class="nav-link fw-normal ps-1 p-0" href="#contacts" data-scroll data-scroll-offset="20">Contatos</a></li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+    <!-- Footer-->
+    <footer class="footer bg-secondary pt-5">
+      <div class="container pt-lg-4 pb-4">
+        <!-- Links-->
+        <div class="row mb-5 pb-md-3 pb-lg-4">
+          <div class="col-lg-6 mb-lg-0 mb-4">
+            <div class="d-flex flex-sm-row flex-column justify-content-between mx-n2">
+              <div class="mb-sm-0 mb-4 px-2"><a class="d-inline-block mb-4" href="real-estate-home.html"> VITRINI </a>
+                <ul class="nav flex-column mb-sm-4 mb-2">
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="mailto:example@email.com"><i class="fi-mail mt-n1 me-2 align-middle opacity-70"></i>example@email.com</a></li>
+                  <li class="nav-item"><a class="nav-link p-0 fw-normal" href="tel:4065550120"><i class="fi-device-mobile mt-n1 me-2 align-middle opacity-70"></i>(406) 555-0120</a></li>
+                </ul>
+                <div class="pt-2"><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-facebook"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-twitter"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-viber"></i></a><a class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2" href="#"><i class="fi-telegram"></i></a></div>
+              </div>
+              <div class="mb-sm-0 mb-4 px-2">
+                <h4 class="h5">Quick Links</h4>
+                <ul class="nav flex-column">
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Compre um empreendimento</a></li>
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Venda um empreendimento</a></li>
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Alugue um empreendimento</a></li>
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Calculadora de empreendimentos</a></li>
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Melhores ofertas</a></li>
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Melhores cidades</a></li>
+                </ul>
+              </div>
+              <div class="px-2">
+                <h4 class="h5">Sobre</h4>
+                <ul class="nav flex-column">
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Sobre nós</a></li>
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Nossos agentes</a></li>
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Ajuda &amp; Suporte</a></li>
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Contatos</a></li>
+                  <li class="nav-item mb-2"><a class="nav-link p-0 fw-normal" href="#">Novidades</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-5 col-lg-6 offset-xl-1">
+            <h4 class="h5">Posts recentes</h4>
+            <article class="d-flex align-items-start" style="max-width: 640px;"><a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="real-estate-blog-single.html"><img class="rounded-3" src="img/real-estate/blog/th01.jpg" width="100" alt="Blog post"></a>
+              <div>
+                <h6 class="mb-1 fs-xs fw-normal text-uppercase text-primary">Home improvement</h6>
+                <h5 class="mb-2 fs-base"><a class="nav-link" href="real-estate-blog-single.html">Your Guide to a Smart Apartment Searching</a></h5>
+                <p class="mb-2 fs-sm">Mi justo, varius vitae cursus ipsum sem massa amet pellentesque. Ipsum enim sit nulla ridiculus semper nam...</p><a class="nav-link nav-link-muted d-inline-block me-3 p-0 fs-xs fw-normal" href="#"><i class="fi-calendar mt-n1 me-1 fs-sm align-middle opacity-70"></i>Dec 4</a><a class="nav-link nav-link-muted d-inline-block me-3 p-0 fs-xs fw-normal" href="#"><i class="fi-chat-circle mt-n1 me-1 fs-sm align-middle opacity-70"></i>2 comments</a>
+              </div>
+            </article>
+            <hr class="text-dark opacity-10 my-4">
+            <article class="d-flex align-items-start" style="max-width: 640px;"><a class="d-none d-sm-block flex-shrink-0 me-sm-4 mb-sm-0 mb-3" href="real-estate-blog-single.html"><img class="rounded-3" src="img/real-estate/blog/th02.jpg" width="100" alt="Blog post"></a>
+              <div>
+                <h6 class="mb-1 fs-xs fw-normal text-uppercase text-primary">Tips &amp; advice</h6>
+                <h5 class="mb-2 fs-base"><a class="nav-link" href="real-estate-blog-single.html">Top 10 Ways to Refresh Your Space</a></h5>
+                <p class="mb-2 fs-sm">Volutpat, orci, vitae arcu feugiat vestibulum ultricies nisi, aenean eget. Vitae enim, tellus tempor consequat mi vitae...</p><a class="nav-link nav-link-muted d-inline-block me-3 p-0 fs-xs fw-normal" href="#"><i class="fi-calendar mt-n1 me-1 fs-sm align-middle opacity-70"></i>Nov 23</a><a class="nav-link nav-link-muted d-inline-block me-3 p-0 fs-xs fw-normal" href="#"><i class="fi-chat-circle mt-n1 me-1 fs-sm align-middle opacity-70"></i>No comments</a>
+              </div>
+            </article>
+          </div>
+        </div>
+        <!-- Banner-->
+        <div class="bg-dark rounded-3">
+          <div class="col-xxl-10 col-md-11 col-10 d-flex flex-md-row flex-column-reverse align-items-md-end align-items-center mx-auto px-0"><img class="flex-shrink-0 mt-md-n5 me-md-5" src="img/real-estate/illustrations/mobile.svg" width="240" alt="PIV mobile app">
+            <div class="align-self-center d-flex flex-lg-row flex-column align-items-lg-center pt-md-3 pt-5 ps-xxl-4 text-md-start text-center">
+              <div class="me-md-5">
+                <h4 class="text-light">Use no seu mobile</h4>
+                <p class="mb-lg-0 text-light">Confira nossa plataforma mobile disponivel para celular sem precisar baixar!</p>
+              </div>
+</svg></a></div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center fs-sm pt-4 mt-3 pb-2">© Todos os direiros reservados. Made by <a href="https://createx.studio/" class="d-inline-block nav-link p-0" target="_blank" rel="noopener">Vitrrini</a></div>
+      </div>
+    </footer>
+    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
+    <!-- Vendor scrits: js libraries and plugins-->
+    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="vendor/leaflet/dist/leaflet.js"></script>
+    <script src="vendor/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js"></script>
+    <script src="vendor/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js"></script>
+    <script src="vendor/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
+    <script src="vendor/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.min.js"></script>
+    <script src="vendor/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.min.js"></script>
+    <script src="vendor/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.min.js"></script>
+    <script src="vendor/filepond/dist/filepond.min.js"></script>
+    <script src="vendor/cleave.js/dist/cleave.min.js"></script>
+    <!-- Main theme script-->
+    <script src="js/theme.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/gh/space10-community/conversational-form@1.0.1/dist/conversational-form.min.js"
+            crossorigin></script>
+        <script>
+            var dispatcher = new cf.EventDispatcher();
+            dispatcher.addEventListener(cf.FlowEvents.FLOW_UPDATE, function (event) {
+                // your code here
+            }, false);
+            var cf = new cf.ConversationalForm({
+                formEl: document.getElementById("form"),
+                eventDispatcher: dispatcher
+            });
+        </script>
+  </body>
+</html>
